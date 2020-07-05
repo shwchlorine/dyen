@@ -2362,6 +2362,9 @@ input[type="radio"]:checked + label:before {
 
 .image#profile-block{
     display: block !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 21em;
 }
 
 .image img {
@@ -2371,8 +2374,7 @@ input[type="radio"]:checked + label:before {
 
 .image img#profile-pic{
     border-radius: 100% !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
+    width: 100% !important;
 }
 
 .image.left, .image.right {
@@ -3203,6 +3205,11 @@ table.alt tbody tr td {
         margin: 0 auto 3em auto;
         width: 18em;
     }
+    
+    .wrapper.featured > .inner > .image img#profile-pic{
+        margin: 0 auto 3em auto;
+        width: 18em;
+    }
 
     .wrapper.featured > .inner > .content p {
         margin: 0 0 2em 0;
@@ -3213,6 +3220,11 @@ table.alt tbody tr td {
 @media screen and (max-width: 736px) {
 
     .wrapper.featured > .inner > .image {
+        margin: 0 auto 2.5em auto;
+        width: 13em;
+    }
+    
+    .wrapper.featured > .inner > .image img#profile-pic{
         margin: 0 auto 2.5em auto;
         width: 13em;
     }
@@ -3230,6 +3242,11 @@ table.alt tbody tr td {
 @media screen and (max-width: 360px) {
 
     .wrapper.featured > .inner > .image {
+        margin: 0 auto 2em auto;
+        width: 11em;
+    }
+    
+    .wrapper.featured > .inner > .image img#profile-pic{
         margin: 0 auto 2em auto;
         width: 11em;
     }
