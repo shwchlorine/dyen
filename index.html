@@ -1,9 +1,4 @@
 <!DOCTYPE HTML>
-<!--
-        Reflex by Pixelarity
-        pixelarity.com | hello@pixelarity.com
-        License: pixelarity.com/license
--->
 <html>
     <head>
         <title>From128</title>
@@ -11,6 +6,40 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
         <link rel="stylesheet" href="assets/css/main.css" />
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script>
+            function contact_me() {
+                var data = $("#contact-form :input").serializeArray();
+                data.push({name: 'formType', value: '128 General Contact'});
+                $.ajax({
+                    type: "POST",
+                    data: data,
+                    url: "Includes/128-contact-me.php",
+                    timeout: 5000,
+                    success: function (data) {
+                        tmp = JSON.parse(data);
+                        if (tmp.status == '1') {
+                            swal("Awesome!", tmp.message, "success");
+                            $("#contact-form")[0].reset();
+                            return;
+                        } else {
+                            swal({
+                                title: "Error",
+                                text: tmp.message,
+                                icon: "warning"
+                            });
+                            return;
+                        }
+                    }, //end success
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        if (textStatus === "timeout") {
+                            swal("Error", "Server response is taking longer than usual, pleas try again later.",
+                                    "error");
+                        }
+                    }
+                }); //end restroom request ajax
+            }
+        </script>
         <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
         <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
     </head>
@@ -29,16 +58,13 @@
         <nav id="menu">
             <h2>Menu</h2>
             <ul class="links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="generic.html">Ipsum veroeros</a></li>
-                <li><a href="generic.html">Tempus etiam</a></li>
-                <li><a href="generic.html">Consequat dolor</a></li>
-                <li><a href="elements.html">Elements</a></li>
+                <li><a href="google-project.html">Projects</a></li>
+                <li><a href="#contact-me-form-target">Contact</a></li>
             </ul>
-            <ul class="actions vertical">
+<!--            <ul class="actions vertical">
                 <li><a href="#" class="button fit special">Get Started</a></li>
                 <li><a href="#" class="button fit">Log In</a></li>
-            </ul>
+            </ul>-->
         </nav>
 
         <!-- Wrapper -->
@@ -51,13 +77,8 @@
                     <div class="content">
                         <header>
                             <h1>Welcome to From128</h1>
-                            <p>Transform products from 1 to infinity.</p>
+                            <p>Transforming products from 1 to infinity.</p>
                         </header>
-                        <!--                        <footer>
-                                                    <ul class="actions">
-                                                        <li><a href="#" class="button big">Get Started</a></li>
-                                                    </ul>
-                                                </footer>-->
                     </div>
                 </div>
             </section>
@@ -66,23 +87,23 @@
             <section class="wrapper style2 special">
                 <div class="inner">
                     <header>
-                        <h2>About me</h2>
-                        <p>Hi, I'm Stefan, a tech product manager living in New York.</p>
+                        <h2>Hi, I'm Stefan</h2>
+                        <p>Technical product manager living in New York. 
+                            Passionate about all things technological and always looking 
+                            for ways to make it better.</p>
                     </header>
                     <ul class="icons major style2">
-                        <li><span class="icon fa-code"><span class="label">Lorem</span></span></li><li>
-                            <span class="icon fa-cog"><span class="label">Ipsum</span></span></li><li>
-                            <span class="icon fa-superpowers"><span class="label">Dolor</span></span></li><li>
-                            <span class="icon fa-handshake-o"><span class="label">Feugiat</span></span></li><li>
-                            <span class="icon fa-users"><span class="label">Tempus</span></span></li>
+                        <li><span class="icon fa-code"><span class="label">Code</span></span></li><li>
+                            <span class="icon fa-cog"><span class="label">Optimization</span></span></li><li>
+                            <span class="icon fa-superpowers"><span class="label">Database</span></span></li><li>
+                            <span class="icon fa-handshake-o"><span class="label">Unity</span></span></li><li>
+                            <span class="icon fa-users"><span class="label">No I in team</span></span></li>
                     </ul>
-                    <p>I believe a remarkable product manager dreams like a unicorn, thinks like 
-                        an engineer, attends like a therapist, and leads as a commander. 
-                        I am passionate about all things technological and always looking 
-                        for ways to make things better.</p>
+                    <p>A remarkable product manager dreams like a unicorn, thinks like 
+                        an engineer, attends like a therapist, and leads as a commander.</p>
                     <footer>
                         <ul class="actions">
-                            <li><a href="#" class="button">Details</a></li>
+                            <li><a href="#" class="button">More about me</a></li>
                         </ul>
                     </footer>
                 </div>
@@ -93,8 +114,8 @@
                 <div class="inner">
                     <header>
                         <h2>Portfolio</h2>
-                        <p>If I were a product manager at such and such company, how do I make this and that better....
-                            <br /><sub>*<u>Disclaimer: I've never worked at most of the 
+                        <p>If I were a product manager at such-and-such company, how do I make this-and-that better....
+                            <br /><sub>*<u>Disclaimer: I have never worked at most of the 
                                     companies listed here.</u></sub></p>
                     </header>
                     <section class="spotlight">
@@ -106,7 +127,7 @@
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dapibus rutrum facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos magna fames ac turpis egestas amet non lorem amet.</p>
                             <footer>
                                 <ul class="actions">
-                                    <li><a href="generic.html" class="button">Details</a></li>
+                                    <li><a href="google-project.html" class="button">Details</a></li>
                                 </ul>
                             </footer>
                         </div>
@@ -170,21 +191,21 @@
                 <div class="inner">
                     <section>
                         <header>
-                            <h3>Stay in Touch</h3>
+                            <h3><a id="contact-me-form-target">Love to Hear From You</a></h3>
                         </header>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dapibus rutrum facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos magna fames ac turpis egestas amet non lorem amet.</p>
+                        <p>Whether you have questions, feedback or anything else, I am always 
+                            happy to answer</p>
                         <ul class="icons">
                             <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-                            <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-                            <li><a href="#" class="icon fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
-                            <li><a href="#" class="icon fa-github"><span class="label">GitHub</span></a></li>
+                            <li><a href="#" class="icon fa-facebook-official"><span class="label">Facebook</span></a></li>
+                            <li><a target="_blank" href="https://github.com/stefanblahblah/weewee-android" class="icon fa-github"><span class="label">GitHub</span></a></li>
                         </ul>
                     </section>
                     <section>
-                        <form method="post" action="#">
+                        <form id="contact-form" method="post" action="contact_me()">
                             <div class="field half first"><input type="text" name="name" id="name" placeholder="Name" /></div>
                             <div class="field half"><input type="email" name="email" id="email" placeholder="Email" /></div>
-                            <div class="field"><textarea name="message" id="message" placeholder="Message" rows="4"></textarea></div>
+                            <div class="field"><textarea name="feedback" id="feedback" placeholder="Message" rows="4"></textarea></div>
                             <ul class="actions">
                                 <li><input type="submit" value="Send Message" /></li>
                             </ul>
@@ -192,7 +213,7 @@
                     </section>
                 </div>
                 <div class="copyright">
-                    <p>&copy; 2015-<script>document.write(new Date().getFullYear())</script>, from128.com, Inc.</p>
+                    <p>&copy; 2015-<script>document.write(new Date().getFullYear())</script> from128.com, Inc.</p>
                 </div>
             </section>
 

@@ -1,0 +1,159 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>from128-Google</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script>
+            function contact_me() {
+                var data = $("#contact-form :input").serializeArray();
+                data.push({name: 'formType', value: '128 Google Project'});
+                $.ajax({
+                    type: "POST",
+                    data: data,
+                    url: "Includes/128-contact-me.php",
+                    timeout: 5000,
+                    success: function (data) {
+                        tmp = JSON.parse(data);
+                        if (tmp.status == '1') {
+                            swal("Awesome!", tmp.message, "success");
+                            $("#contact-form")[0].reset();
+                            return;
+                        } else {
+                            swal({
+                                title: "Error",
+                                text: tmp.message,
+                                icon: "warning"
+                            });
+                            return;
+                        }
+                    }, //end success
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        if (textStatus === "timeout") {
+                            swal("Error", "Server response is taking longer than usual, pleas try again later.",
+                                    "error");
+                        }
+                    }
+                }); //end restroom request ajax
+            }
+        </script>
+        <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+        <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+    </head>
+    <body>
+
+        <!-- Header -->
+        <header id="header">
+            <nav>
+                <ul>
+                    <li><a href="#menu">Menu</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Menu -->
+        <nav id="menu">
+            <h2>Menu</h2>
+            <ul class="links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="index.html#contact-me-form-target">Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- Wrapper -->
+        <div id="wrapper">
+
+            <!-- Main -->
+            <section id="main" class="wrapper style1">
+                <div class="inner">
+                    <header class="major">
+                        <h1>Google: Project Mars</h1>
+                        <p>Search earthy stuff on Mars, and vice versa.</p>
+                    </header>
+                    <span class="image main"><img src="images/googleplex_hq.png" alt="Google HQ" /></span>
+                    <p>March 20<sup>th</sup>, 2018<br />There are only two types of search engine, there is Google, and 
+                        there is the rest.</p>
+                    <p>Interdum et malesuada fames ac ante ipsum primis in faucibus. 
+                        Pellentesque venenatis dolor imperdiet dolor mattis sagittis. 
+                        Praesent rutrum sem diam, vitae egestas enim auctor sit amet. 
+                        Pellentesque leo mauris, consectetur id ipsum sit amet, 
+                        fersapien risus, commodo eget turpis at, 
+                        elementum convallis elit. Pellentesque enim turpis,
+                        hendrerit tristique lorem ipsum dolor.</p>
+                    <div class="row">
+                        <div class="4u 12u$(medium)">
+                            <h3>Overview</h3>
+                            <ul>
+                                <li>Dominate search space.</li>
+                                <li>Project Duration: 3 months.</li>
+                                <li>Budget: $2 million US dollars.</li>
+                                <li>Departments: marketing, sales, support team, engineering.</li>
+                            </ul>
+                        </div>
+                        <div class="4u 12u$(medium)">
+                            <h3>KPIs</h3>
+                            <ul>
+                                <li>MRR: $20 million.</li>
+                                <li>Additional 200 million signup users.</li>
+                                <li>CAC: $1.66</li>
+                                <li>NPS: 48+</li>
+                                <li>30%+ in user retention in 6 months after launch.</li>
+                            </ul>
+                        </div>
+                        <div class="4u 12u$(medium)">
+                            <h3>Files</h3>
+                            <ul>
+                                <li>Road maps.</li>
+                                <li>Pitch deck.</li>
+                                <li>Product requirement documentation.</li>
+                                <li>Mockups & prototype.</li>
+                                <li>User stories.</li>
+                            </ul>
+                            <ul class="actions">
+                                <li><a href="#" class="button icon fa-download">Download Files</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <section id="footer" class="wrapper split style2">
+                <div class="inner">
+                    <section>
+                        <header>
+                            <h3>Project Feedback</h3>
+                        </header>
+                        <p>Hope you like the pitch, all thoughts are welcomed.</p>
+                    </section>
+                    <section>
+                        <form method="post" action="contact_me()">
+                            <div class="field half first"><input type="text" name="name" id="name" placeholder="Name" /></div>
+                            <div class="field half"><input type="email" name="email" id="email" placeholder="Email" /></div>
+                            <div class="field"><textarea name="feedback" id="feedback" placeholder="Message" rows="4"></textarea></div>
+                            <ul class="actions">
+                                <li><input type="submit" value="Send Message" /></li>
+                            </ul>
+                        </form>
+                    </section>
+                </div>
+                <div class="copyright">
+                    <p>&copy; 2015-<script>document.write(new Date().getFullYear())</script> from128.com, Inc.</p>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- Scripts -->
+        <script src="assets/js/jquery.min.3.5.1.js"></script>
+        <script src="assets/js/skel.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+        <script src="assets/js/main.js"></script>
+
+    </body>
+</html>
