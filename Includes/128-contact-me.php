@@ -43,44 +43,41 @@ if ($loggedIn) {
             "Reply-to: support@weeweefree.com" . "\r\n" .
             "X-Mailer: PHP/" . phpversion();
     if (!mail($to, $subjectToStefan, $message, $headers)) {
-        $fh = fopen('C:\web-user-feedback.txt', 'a');
+        $fh = fopen('C:\128-feedback.txt', 'a');
         fwrite($fh, "\nDate: " . $date . "\nTime: " . $time . "\nan Cannot receive email from sender");
         fwrite($fh, "uid: " . $uid . "Feedback: " . $feedback . "\nEmail: " . $email . "\nName: " . $name . "\n\n");
         fclose($fh);
         $returnStatus['status'] = '-2';
-        $returnStatus['data'] = $recaptcha_json;
         $returnStatus['message'] = "Cannot connect to server now, please try again later";
         echo json_encode($returnStatus);
         exit();
     } else {
-        $sender_subject = "Thank you for getting in touch";
-        $sender_message = "<html><body>We appreciate you contacting us. One ";
-        $sender_message .= "of our colleagues will get back to you shortly.";
-        $sender_message .= "<br><br>Have a great day!</body></html>";
-        $sender_header = "From: WeeWeeFree <support@weeweefree.com>" . "\r\n" .
-                "Reply-to: support@weeweefree.com" . "\r\n" .
-                "X-Mailer: PHP/" . phpversion()."\r\n".
-                'MIME-Version: 1.0'."\r\n".
-                'Content-Type: text/html; charset=ISO-8859-1'."\r\n";
-        if (!mail($email, $sender_subject, $sender_message, $sender_header)) {
-            $fh = fopen('C:\web-user-feedback.txt', 'a');
-            fwrite($fh, "\nDate: " . $date . "\nTime: " . $time . "\nan Cannot send email to sender");
-            fwrite($fh, "uid: " . $uid . "Feedback: " . $feedback . "\nEmail: " . $email . "\nName: " . $name . "\n\n");
-            fclose($fh);
-            $returnStatus['status'] = '-3';
-            $returnStatus['data'] = $recaptcha_json;
-            $returnStatus['message'] = "Cannot connect to server now, please try again later";
-            echo json_encode($returnStatus);
-            exit();
-        }
+//        $sender_subject = "Thank you for getting in touch";
+//        $sender_message = "<html><body>We appreciate you contacting us. One ";
+//        $sender_message .= "of our colleagues will get back to you shortly.";
+//        $sender_message .= "<br><br>Have a great day!</body></html>";
+//        $sender_header = "From: WeeWeeFree <support@weeweefree.com>" . "\r\n" .
+//                "Reply-to: support@weeweefree.com" . "\r\n" .
+//                "X-Mailer: PHP/" . phpversion()."\r\n".
+//                'MIME-Version: 1.0'."\r\n".
+//                'Content-Type: text/html; charset=ISO-8859-1'."\r\n";
+//        if (!mail($email, $sender_subject, $sender_message, $sender_header)) {
+//            $fh = fopen('C:\web-user-feedback.txt', 'a');
+//            fwrite($fh, "\nDate: " . $date . "\nTime: " . $time . "\nan Cannot send email to sender");
+//            fwrite($fh, "uid: " . $uid . "Feedback: " . $feedback . "\nEmail: " . $email . "\nName: " . $name . "\n\n");
+//            fclose($fh);
+//            $returnStatus['status'] = '-3';
+//            $returnStatus['data'] = $recaptcha_json;
+//            $returnStatus['message'] = "Cannot connect to server now, please try again later";
+//            echo json_encode($returnStatus);
+//            exit();
+//        }
         $returnStatus['status'] = '1';
-        $returnStatus['data'] = $recaptcha_json;
         $returnStatus['message'] = 'success';
         echo json_encode($returnStatus);
         exit();
     }
     $returnStatus['status'] = '1';
-    $returnStatus['data'] = $recaptcha_json;
     $returnStatus['message'] = 'success';
     echo json_encode($returnStatus);
     exit();
