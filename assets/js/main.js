@@ -1,7 +1,5 @@
 /*
-	Reflex by Pixelarity
-	pixelarity.com | hello@pixelarity.com
-	License: pixelarity.com/license
+	from128.com | stefan.george32@gmail.com
 */
 
 (function($) {
