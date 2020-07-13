@@ -7,39 +7,51 @@
         <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
         <link rel="stylesheet" href="assets/css/main.css" />
         <link rel="icon" href="images/favicon.png">
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-43112646-3"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+
+            gtag('config', 'UA-43112646-3');
+        </script>
+
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script>
-            function contact_me() {
-                var data = $("#contact-form :input").serializeArray();
-                data.push({name: 'formType', value: '128 GoWeeWee Feedback'});
-                $.ajax({
-                    type: "POST",
-                    data: data,
-                    url: "Includes/128-contact-me.php",
-                    timeout: 5000,
-                    success: function (data) {
-                        tmp = JSON.parse(data);
-                        if (tmp.status == '1') {
-                            swal("Awesome!", tmp.message, "success");
-                            $("#contact-form")[0].reset();
-                            return;
-                        } else {
-                            swal({
-                                title: "Error",
-                                text: tmp.message,
-                                icon: "warning"
-                            });
-                            return;
-                        }
-                    }, //end success
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        if (textStatus === "timeout") {
-                            swal("Error", "Server response is taking longer than usual, pleas try again later.",
-                                    "error");
-                        }
-                    }
-                }); //end restroom request ajax
+    function contact_me() {
+        var data = $("#contact-form :input").serializeArray();
+        data.push({name: 'formType', value: '128 GoWeeWee Feedback'});
+        $.ajax({
+            type: "POST",
+            data: data,
+            url: "Includes/128-contact-me.php",
+            timeout: 5000,
+            success: function (data) {
+                tmp = JSON.parse(data);
+                if (tmp.status == '1') {
+                    swal("Awesome!", tmp.message, "success");
+                    $("#contact-form")[0].reset();
+                    return;
+                } else {
+                    swal({
+                        title: "Error",
+                        text: tmp.message,
+                        icon: "warning"
+                    });
+                    return;
+                }
+            }, //end success
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (textStatus === "timeout") {
+                    swal("Error", "Server response is taking longer than usual, pleas try again later.",
+                            "error");
+                }
             }
+        }); //end restroom request ajax
+    }
         </script>
         <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
         <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
