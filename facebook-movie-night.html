@@ -1,0 +1,180 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>from128-Facebook</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <link rel="icon" href="images/favicon.png">
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-43112646-3"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { 
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+
+            gtag('config', 'UA-43112646-3');
+        </script>
+
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script>
+            function contact_me() {
+                var data = $("#contact-form :input").serializeArray();
+                data.push({name: 'formType', value: '128 Facebook movie night Feedback'});
+                $.ajax({
+                    type: "POST",
+                    data: data,
+                    url: "Includes/128-contact-me.php",
+                    timeout: 5000,
+                    success: function (data) {
+                        tmp = JSON.parse(data);
+                        if (tmp.status == '1') {
+                            swal("Awesome!", tmp.message, "success");
+                            $("#contact-form")[0].reset();
+                            return;
+                        } else {
+                            swal({
+                                title: "Error",
+                                text: tmp.message,
+                                icon: "warning"
+                            });
+                            return;
+                        }
+                    }, //end success
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        if (textStatus === "timeout") {
+                            swal("Error", "Server response is taking longer than usual, pleas try again later.",
+                                    "error");
+                        }
+                    }
+                }); //end restroom request ajax
+            }
+        </script>
+        <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+        <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+    </head>
+    <body>
+
+        <!-- Header -->
+        <header id="header">
+            <nav>
+                <ul>
+                    <li><a href="#menu">Menu</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Menu -->
+        <nav id="menu">
+            <h2>Menu</h2>
+            <ul class="links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="projects.html">Portfolio</a></li>
+                <li><a href="more-about-me.html">About</a></li>
+                <li><a href="index.html#contact-me-form-target">Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- Wrapper -->
+        <div id="wrapper">
+
+            <!-- Main -->
+            <section id="main" class="wrapper style1">
+                <div class="inner">
+                    <header class="major">
+                        <h1>Facebook: Movie Night</h1>
+                    </header>
+                    <span class="image main"><img src="images/facebook-banner.png" alt="Facebook movie image" /></span>
+                    <p>August 10<sup>th</sup>, 2020<br /><br />
+                        Facebook, Inc. is an American social media conglomerate corporation 
+                        based in Menlo Park, California. It was founded by Mark Zuckerberg, along 
+                        with his fellow roommates and students at Harvard College. Facebook 
+                        is one of the world's most valuable companies. It is 
+                        considered one of the Big Five technology companies 
+                        along with Microsoft, Amazon, Apple, and Google.
+                    </p>
+                    <p>
+                        <b>Movie Night</b> is a film starting with Hollywood movie stars and Facebook users, 
+                        but instead of traditional action and cut, producers will choose scenes for FB users to reenact. 
+                        Users film themselves according to the script and instruction at home, 
+                        then upload it to Facebook audition page. Producers select clips that are best 
+                        suited and edit it to the original scene with CGI, as if the user is the actor.
+                    </p>
+                    <div class="row">
+                        <div class="4u 12u$(medium)">
+                            <h3>Overview</h3>
+                            <ul>
+                                <li>Courtroom drama made by Hollywood actors and Facebook users.</li>
+                                <li>Project Duration: 8 months.</li>
+                                <li>Budget: $50 million (US).</li>
+                                <li>Departments: Marketing, Production, Design and Engineering.</li>
+                            </ul>
+                        </div>
+                        <div class="4u 12u$(medium)">
+                            <h3>KPIs</h3>
+                            <ul>
+                                <li>MRR: TBD.</li>
+                                <li>Projected Sales: N/A.</li>
+                                <li>CAC: $1.03</li>
+                                <li>NPS: 65+</li>
+                            </ul>
+                        </div>
+                        <div class="4u 12u$(medium)">
+                            <h3>File</h3>
+                            <ul>
+                                <li>Road maps.</li>
+                                <li>Pitch deck.</li>
+                                <li>Product requirement documentation.</li>
+                                <li>Mockups.</li>
+                                <li>User stories.</li>
+                            </ul>
+                            <ul class="actions">
+                                <li>
+                                    <a href="http://from128.com/files/Facebook/Facebook.zip"
+                                       class="button icon fa-download">Download Files</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <section id="footer" class="wrapper split style2">
+                <div class="inner">
+                    <section>
+                        <header>
+                            <h3>Project Feedback</h3>
+                        </header>
+                        <p>Hope you enjoy the idea, all thoughts are welcomed.</p>
+                    </section>
+                    <section>
+                        <form id="contact-form" method="post" action="javascript:contact_me()">
+                            <div class="field half first"><input type="text" name="name" id="name" placeholder="Name" /></div>
+                            <div class="field half"><input type="email" name="email" id="email" placeholder="Email" /></div>
+                            <div class="field"><textarea name="feedback" id="feedback" placeholder="Message" rows="4"></textarea></div>
+                            <ul class="actions">
+                                <li><input type="submit" value="Send Message" /></li>
+                            </ul>
+                        </form>
+                    </section>
+                </div>
+                <div class="copyright">
+                    <p>&copy; <script>document.write(new Date().getFullYear())</script> from128.com, Inc.</p>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- Scripts -->
+        <script src="assets/js/jquery.min.3.5.1.js"></script>
+        <script src="assets/js/skel.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+        <script src="assets/js/main.js"></script>
+
+    </body>
+</html>
